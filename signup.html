@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="fud-pal, Nagigation App, Location, Google map" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta name="description" content="This is a software developed as a prject to get certified by trybe-x communty" />
+  <meta name="author" content="Team Alpha" />
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
+  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript" src="assets/js/passwordGenerator.js"></script>
+  <link rel="icon" href="assets/images/logo.png" type="image/png" sizes="16x16" />
+</head>
+<style type="text/css">
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+  }
+  .container {
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  input[type="text"],
+  input[type="password"], 
+  input[type="email"],
+  input[type="tel"]{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #a0522d;
+    border-radius: 25px;
+    font-size: 16px;
+  }
+  .signup-button {
+    background-color: #a0522d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .signup-button:hover {
+    opacity: 0.7;
+  }
+  .register-link {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .register-link a {
+    color: #a0522d;
+    text-decoration: none;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <h1>Create An Account!</h1>
+    <form>
+      <label for="name">Full Name </label>
+      <input id="name" name="name" type="text" placeholder="Your Full Name" />
+      <label for="email"> Email Address </label>
+      <input id="email" name="email" type="email" placeholder="Teamalpha.gmail.com"/>
+      <label for="Reg_Number"> Registration Number </label>
+      <input id="Reg_Number" name="Reg_Number" type="tel" placeholder="Fcp/csc/18/1071" />
+      <label for="password"> Create Password </label>
+      <input id="password" name="password" type="password"placeholder="qud1234" />
+      <label for="confirm"> Confirm Password </label>
+      <input id="confirm" name="confirm" type="password" placeholder="comfirm your password" />
+      <button class="signup-button" type="submit" name="signUp">
+        <a href="mainpage.html">Create Account</a> 
+      </button>
+    </form>
+    <div class="register-link">
+      Already have an account
+      <a href="index.html"> Login Here! </a>
+    </div>
+  </div>
+</body>
+  
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js"></script>
+
+  <script type="module">
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBO8al6aMAbeRDIpkHmN78Etox8T6SQYxU",
+    authDomain: "team-alpha-49eca.firebaseapp.com",
+    projectId: "team-alpha-49eca",
+    storageBucket: "team-alpha-49eca.appspot.com",
+    messagingSenderId: "567969799966",
+    appId: "1:567969799966:web:8bc8e858c38b259332f30f"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  //initialize variables
+  const auth= firebase.auth()
+  const auth= firebase.auth()
+   function register(){
+  //getting all our input field
+  email = document.getElementById('email').value
+  password = document.getElementById('password').value
+  confirm=document.getElementById('confirm').value
+  name = document.getElementById('name').value
+  Reg_Number = document.getElementById('Reg_Number').value
+
+  //validate input fields
+  if(validate_email(email) == false||validate_password(password)==false){
+    alert('Email or password is outta line')
+    return
+    //don't cont. the code
+  }
+  if (validate_field(name)==false||validate_field(Reg_Number)==false){
+    alert('one or more field is required')
+    return
+  }
+  
+  //move on with auth
+  auth.createUserWithEmailAndPassword(email,password).then(function(){
+    var user=auth.currentUser
+    //add this user to the firebase database
+    alert('user created!!')
+
+    //create user data
+    var user_data={
+      email=email,
+      name=name,
+      Reg_Number=Reg_Number,
+      last_login:date.now()
+    }
+    database_ref.child('users/'+user.uid)set(user_data)
+  })
+  
+  .catch(function(error){
+    //firebase will use this to alert if there is any error
+    var error_code = error.code
+    var error_message=error.message
+    alert(error_message)
+  })
+}
+   
+   function validate_email(email){
+    expression=/^[^@]+@\w_(\.\w+)+\w$/
+    if expression.test(email == true){
+      //email is good
+      return true
+    }
+   else{
+    //email is not good
+    return false
+   }
+  }
+  function validate_password(password){
+    //firebase only accepts length greater than 6
+    if (password<6){
+      return false
+    }else{
+      return true
+    }
+  }
+  function validate_field(field){
+    if (field == null){
+      return false
+    }
+    if (field.length <= 0){
+      return false
+    }
+    else{
+      return true
+    }
+  }
+</script>
+</script>
+
+</html>

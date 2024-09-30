@@ -1,18 +1,118 @@
-<!DOCTYPE html>
-<html lang ="en">
-<head>
-    <meta charset="UTF-8">
-    <meta  name="viewport" content="width=device-width,initial-scale=1.0">
-    <title> FudPal </title>
-    <link rel="stylesheet" type="text/css" href="index.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Federal University Dutse</h1>
-        <img src="Fud_20240913_191705_0000.png" alt="FUD PAL">
-        <h2>Fud Navigation App</h2>
-        <a href="homepage.html" class="get-started-link">Get Started </a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="keywords"
+      content="fud-pal, Nagigation App, Location, Google map"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta
+      name="description"
+      content="This is a software developed as a prject to get certified by trybe-x communty"
+    />
+    <meta name="author" content="Team Alpha" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <script type="text/javascript" src="assets/js/script.js"></script>
+    <link rel="icon" href="assets/images/" type="image/png" sizes="16x16" />
+    <style type="text/css">
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #ffffff;
+      }
+      .header {
+        width: 100%;
+        background-color: #00a651;
+        padding: 10px;
+        top: auto;
+        display: flex;
+        align-items: center;
+      }
+      .header img {
+        width: 30px;
+        height: 30px;
+      }
+      .container {
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+      }
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+        text-align: left;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 2px solid #a0522d;
+        border-radius: 25px;
+        font-size: 16px;
+      }
+      .login-button {
+        background-color: #a0522d;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .login-button:hover {
+        opacity: 0.7;
+      }
+      .register-link {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+      .register-link a {
+        color: #a0522d;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img
+        alt="Back arrow icon"
+        height="30"
+        src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-Kh9LtSOIXJDEVkSR4tGL4swM.png?st=2024-09-20T20%3A56%3A28Z&amp;se=2024-09-20T22%3A56%3A28Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-20T19%3A47%3A38Z&amp;ske=2024-09-21T19%3A47%3A38Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=yedu/mTzVXnXDaYACFLGHahlKt5NVBycH675w69A8l0%3D"
+        width="30"
+      />
     </div>
-
-</body>
+    <div class="container">
+      <h1><a href="mainpage.html">LOGIN!</a></h1>
+      <form>
+        <label for="email"> Email </label>
+        <input id="email" name="email" type="text" />
+        <label for="password"> Password </label>
+        <input id="password" name="password" type="password" />
+        <button class="login-button" type="submit">Login</button>
+      </form>
+      <div class="register-link">
+        Don’t Have An Account?
+        <a href="signup.html"> Register Here! </a>
+      </div>
+    </div>
+  </body>
 </html>
+ 
